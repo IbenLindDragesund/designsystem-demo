@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "@digdir/designsystemet-css";
+@import "@digdir/designsystemet-css/theme";
+@import "@digdir/designsystemet-css/theme/designsystemet.tailwind.css";
+
+/* The design system's element resets (unlayered) override Tailwind's layered prose
+   styles. revert-layer here rolls the cascade back to @layer utilities, where the
+   typography plugin lives, restoring prose styling inside .prose containers. */
+.prose
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  li,
+  blockquote,
+  table,
+  thead,
+  tbody,
+  tr,
+  th,
+  td,
+  a,
+  strong,
+  em,
+  code,
+  pre,
+  hr,
+  figure,
+  figcaption
+) {
+  all: revert-layer;
+}
+
+body {
+  font-family: var(--ds-font-family), sans-serif;
+  font-feature-settings: "cv05" 1;
+}
