@@ -6,6 +6,7 @@ import {
   Heading,
   Paragraph,
 } from "@digdir/designsystemet-react";
+import { Suspense } from "react";
 import { getTabContent } from "@/mock/server";
 import DemoTabs from "./DemoTabs";
 
@@ -58,13 +59,15 @@ export default async function Home() {
         </div>
       </section>
       <div className="container mx-auto py-5">
-        <DemoTabs
-          about={<div className="prose" dangerouslySetInnerHTML={{ __html: tabContent.about }} />}
-          timetable={
-            <div className="prose" dangerouslySetInnerHTML={{ __html: tabContent.timetable }} />
-          }
-          exam={<div className="prose" dangerouslySetInnerHTML={{ __html: tabContent.exam }} />}
-        ></DemoTabs>
+        <Suspense>
+          <DemoTabs
+            about={<div className="prose" dangerouslySetInnerHTML={{ __html: tabContent.about }} />}
+            timetable={
+              <div className="prose" dangerouslySetInnerHTML={{ __html: tabContent.timetable }} />
+            }
+            exam={<div className="prose" dangerouslySetInnerHTML={{ __html: tabContent.exam }} />}
+          ></DemoTabs>
+        </Suspense>
       </div>
     </>
   );
