@@ -32,22 +32,30 @@ const DemoTabs = ({ about, timetable, exam }: DemoTabsProps) => {
   return (
     <Tabs defaultValue={selectedTab} onChange={handleTabChange}>
       <TabsList>
-        <TabsTab value="about">Om</TabsTab>
-        <TabsTab value="timetable">Timeplan</TabsTab>
-        <TabsTab value="exam">Eksamen</TabsTab>
+        <TabsTab value="about" aria-selected={`${selectedTab === "about"}`}>
+          Om
+        </TabsTab>
+        <TabsTab value="timetable" aria-selected={`${selectedTab === "timetable"}`}>
+          Timeplan
+        </TabsTab>
+        <TabsTab value="exam" aria-selected={`${selectedTab === "exam"}`}>
+          Eksamen
+        </TabsTab>
       </TabsList>
-      <TabsPanel value="about" className="!px-0 !mt-4">
-        <Heading className="!mb-4">Om</Heading>
-        {about}
-      </TabsPanel>
-      <TabsPanel value="timetable" className="!px-0 !mt-4">
-        <Heading className="!mb-4">Timeplan</Heading>
-        {timetable}
-      </TabsPanel>
-      <TabsPanel value="exam" className="!px-0 !mt-4">
-        <Heading className="!mb-4">Eksamen</Heading>
-        {exam}
-      </TabsPanel>
+      <div className="mt-4">
+        <TabsPanel value="about" className="!p-0" hidden={selectedTab !== "about"}>
+          <Heading className="!mb-4">Om</Heading>
+          {about}
+        </TabsPanel>
+        <TabsPanel value="timetable" className="!p-0" hidden={selectedTab !== "timetable"}>
+          <Heading className="!mb-4">Timeplan</Heading>
+          {timetable}
+        </TabsPanel>
+        <TabsPanel value="exam" className="!p-0" hidden={selectedTab !== "exam"}>
+          <Heading className="!mb-4">Eksamen</Heading>
+          {exam}
+        </TabsPanel>
+      </div>
     </Tabs>
   );
 };
